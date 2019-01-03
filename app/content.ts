@@ -5,10 +5,13 @@ class BookInfo {
   author: string;
   isbn10: string = 'null';
   isbn13: string = 'null';
+  publisher: string = 'null';
+  url: string;
   constructor() {
     this.setTitle();
     this.setAuthor();
-    this.setIsbn();
+    this.setDetails();
+    this.setUrl();
   }
 
   setTitle() {
@@ -20,7 +23,7 @@ class BookInfo {
     this.author = tmpAuthor.innerText.replace('のAmazon著者ページを見る', '');
   }
 
-  setIsbn() {
+  setDetails() {
     const details = document.getElementById('detail_bullets_id').getElementsByTagName('li');
 
     for (const index in details) {
@@ -32,8 +35,14 @@ class BookInfo {
         this.isbn10 = text;
       }else if (text.match(/ISBN-13/)) {
         this.isbn13 = text;
+      }else if (text.match(/出版社/)) {
+        this.publisher = text;
       }
     }
+  }
+
+  setUrl() {
+    this.url = document.location.href;
   }
 }
 
