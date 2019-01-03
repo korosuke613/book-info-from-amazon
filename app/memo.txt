@@ -1,4 +1,0 @@
-"http://*/*"
-"https://*/*"
-"<all_urls>"
-"activeTab"
