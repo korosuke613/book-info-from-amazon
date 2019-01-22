@@ -7,11 +7,13 @@ class BookInfo {
   isbn13: string = 'null';
   publisher: string = 'null';
   url: string;
+  price: number;
   constructor() {
     this.setTitle();
     this.setAuthor();
     this.setDetails();
     this.setUrl();
+    this.setPrice();
   }
 
   setTitle() {
@@ -43,6 +45,11 @@ class BookInfo {
 
   setUrl() {
     this.url = document.location.href;
+  }
+
+  setPrice() {
+    const tmpPrice: any = document.getElementById('buyNewSection').getElementsByClassName('offer-price')[0];
+    this.price = tmpPrice.innerText;
   }
 }
 

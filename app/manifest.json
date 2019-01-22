@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "Get book info",
   "version": "1.0",
+  "default_locale": "en",
   "browser_action": {
     "default_icon": {
       "16": "icon.png"
