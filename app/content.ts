@@ -54,10 +54,8 @@ class BookInfo {
 }
 
 let bookInfoLocal = new BookInfo();
-console.log(bookInfoLocal);
 chrome.runtime.sendMessage(
   bookInfoLocal,
   (response) => {
-    console.log(response);
     return true;
   });
