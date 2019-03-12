@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(
-    { title: 'On', author: 'On' , url: 'On', price: 'On', publisher: 'On', isbn10: 'On', isbn13: 'On' }, (item) => {
+    { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' }, (item) => {
       let tmp: any = document.getElementById('title');
       tmp.value = item.title;
       tmp = document.getElementById('author');
