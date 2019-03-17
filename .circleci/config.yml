@@ -3,15 +3,15 @@ jobs:
   build:
     working_directory: ~/workspace
     docker:
-      - image: node:8.15.1-alpine
+      - image: node:8.15.1
 
     steps:
-      - run:
-          name: install git
-          command: apk add git zip bash
       - checkout
       - restore_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install zip
+          command: apt-get update -y && apt-get install -y zip
       - run:
           name: System information
           command: |
@@ -31,17 +31,9 @@ jobs:
       - run:
           name: Upload
           command: yarn upload:file
-          environment:
-            CLIENT_ID: $CLIENT_ID
-            CLIENT_SECRET: $CLIENT_SECRET
-            REFRESH_TOKEN: $REFRESH_TOKEN
       - run:
           name: Publish
           command: yarn upload:publish
-          environment:
-            CLIENT_ID: $CLIENT_ID
-            CLIENT_SECRET: $CLIENT_SECRET
-            REFRESH_TOKEN: $REFRESH_TOKEN
       - save_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
