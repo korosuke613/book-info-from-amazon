@@ -15,7 +15,7 @@ if(typeof env !== 'string'){
   });
 }
 console.log(`next version is ${env}`);
-config.version = env;
+config.version = env.replace('v', '');
 
 fs.writeFileSync(
   file_path,
