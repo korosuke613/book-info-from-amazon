@@ -29,11 +29,8 @@ jobs:
           name: Build
           command: yarn build
       - run:
-          name: Upload
-          command: yarn upload:file
-      - run:
-          name: Publish
-          command: yarn upload:publish
+          name: Upload & Publish
+          command: CLIENT_ID=$CLIENT_ID CLIENT_SECRET=$CLIENT_SECRET REFRESH_TOKEN=$REFRESH_TOKEN yarn upload
       - save_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
