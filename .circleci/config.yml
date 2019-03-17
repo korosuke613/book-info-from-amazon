@@ -32,6 +32,14 @@ jobs:
           root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
           paths:
             - . # 共有するパス（絶対パスかrootからの相対パス）
+  test:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: yarn test
   deploy:
     executor: default
     steps:
@@ -52,15 +60,27 @@ jobs:
 
 
 workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
   publish:
     jobs:
       - build:
           filters:
             tags:
               only: /^v.*/
-      - deploy:
+      - test:
           requires:
             - build
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy:
+          requires:
+            - test
           filters:
             tags:
               only: /^v.*/
