@@ -13,3 +13,5 @@ app/scripts
 
 *.zip
 *.env
+app/*.js
+*.js.map
