@@ -15,3 +15,5 @@ app/scripts
 *.env
 app/*.js
 *.js.map
+coverage
+.nyc_output
