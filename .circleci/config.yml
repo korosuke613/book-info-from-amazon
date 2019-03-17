@@ -8,7 +8,7 @@ jobs:
     steps:
       - run:
           name: install git
-          command: apk add git zip
+          command: apk add git zip bash
       - checkout
       - restore_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
