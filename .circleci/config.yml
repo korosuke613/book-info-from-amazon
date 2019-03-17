@@ -39,7 +39,7 @@ jobs:
           at: .
       - run:
           name: Set Version
-          command: yarn set:version
+          command: yarn upload:version
           environment:
             NEXT_VERSION: $CIRCLE_TAG
       - run:
