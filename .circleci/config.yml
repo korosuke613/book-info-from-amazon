@@ -50,7 +50,10 @@ jobs:
 workflows:
   publish:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - deploy:
           requires:
             - build
