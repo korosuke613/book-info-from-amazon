@@ -3,6 +3,7 @@
 
 This is chrome extension that get information of a book from amazon.
 
-
-## image
 ![イメージ画像](image.png)
+
+## install
+Installing from [this URL](https://chrome.google.com/webstore/detail/bifa-book-info-from-amazo/bkhaeipigknfhmbkcoingjepncjpaedl).
