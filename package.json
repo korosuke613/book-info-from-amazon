@@ -8,7 +8,10 @@
     "@types/chrome": "0.0.77",
     "chai": "^4.2.0",
     "chrome-webstore-upload": "^0.2.2",
+    "coveralls": "^3.0.3",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "ts-node": "^8.0.3",
     "tslint": "^5.12.1",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.4"
@@ -29,6 +32,31 @@
       ]
     }
   },
+  "nyc": {
+    "all": true,
+    "include": [
+      "*.js",
+      "*.ts",
+      "app/*.ts"
+    ],
+    "exclude": [
+      "coverage/**",
+      "packages/*/test/**",
+      "test/**",
+      "test{,-*}.js",
+      "**/*{.,-}test.js",
+      "**/__tests__/**",
+      "**/node_modules/**",
+      "**/babel.config.js"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "sourceMap": true
+  },
   "scripts": {
     "build": "yarn tsc",
     "upload:pack": "zip -r app app -x \"*.ts\"",
@@ -36,6 +64,7 @@
     "upload:file": "node upload.js",
     "upload:publish": "node publish.js",
     "upload:version": "node update_version.js $CIRCLE_TAG",
-    "test": "mocha"
+    "test": "nyc mocha",
+    "test:coveralls": "nyc report --reporter=text-lcov | coveralls"
   }
 }

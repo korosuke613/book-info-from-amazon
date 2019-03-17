@@ -40,6 +40,9 @@ jobs:
       - run:
           name: Test
           command: yarn test
+      - run:
+          name: Post Coveralls
+          command: yarn test:coveralls
   deploy:
     executor: default
     steps:
