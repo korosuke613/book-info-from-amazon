@@ -36,12 +36,12 @@ jobs:
             paths:
               - ~/workspace/node_modules
               - ~/.cache/yarn/
-    - deploy:
-        executer: default
-        steps:
-          - run:
-            name: Upload & Publish
-            command: yarn upload
+  - deploy:
+      executer: default
+      steps:
+        - run:
+          name: Upload & Publish
+          command: yarn upload
 
 workflows:
   publish:
