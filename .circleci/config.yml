@@ -13,9 +13,6 @@ jobs:
       - restore_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
-          name: Install zip
-          command: apt-get update -y && apt-get install -y zip
-      - run:
           name: System information
           command: |
             echo "Node $(node -v)"
@@ -31,14 +28,23 @@ jobs:
           paths:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
+      - persist_to_workspace:
+          root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
+          paths:
+            - . # 共有するパス（絶対パスかrootからの相対パス）
   deploy:
     executor: default
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Set Version
           command: yarn set:version
           environment:
             NEXT_VERSION: $CIRCLE_TAG
+      - run:
+          name: Install zip
+          command: apt-get update -y && apt-get install -y zip
       - run:
           name: Pack ZIP
           command: yarn upload:pack
