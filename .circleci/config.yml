@@ -40,8 +40,6 @@ jobs:
       - run:
           name: Set Version
           command: yarn upload:version
-          environment:
-            NEXT_VERSION: $CIRCLE_TAG
       - run:
           name: Install zip
           command: apt-get update -y && apt-get install -y zip

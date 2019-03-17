@@ -33,6 +33,6 @@
     "upload": "yarn upload:file && yarn upload:publish",
     "upload:file": "node upload.js",
     "upload:publish": "node publish.js",
-    "upload:version": "node update_version.js $NEXT_VERSION"
+    "upload:version": "node update_version.js $CIRCLE_TAG"
   }
 }
