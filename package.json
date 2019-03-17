@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.77",
+    "chrome-webstore-upload": "^0.2.2",
     "tslint": "^5.12.1",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.4"
@@ -25,5 +26,13 @@
         "single"
       ]
     }
+  },
+  "scripts": {
+    "build:compile": "yarn tsc",
+    "build:pack": "zip -r app app -x \"*.ts\"",
+    "build": "yarn build:compile && yarn build:pack",
+    "upload:file": "node upload.js",
+    "upload:publish": "node publish.js",
+    "set:version": "node update_version.js $NEXT_VERSION"
   }
 }
