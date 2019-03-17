@@ -1,38 +1,56 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  # ここに好きな名前で executor を定義できる
+  default:
     working_directory: ~/workspace
     docker:
       - image: node:8.15.1
+jobs:
+  - build:
+      executor: default
+      steps:
+        - checkout
+        - restore_cache:
+            key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - run:
+            name: Install zip
+            command: apt-get update -y && apt-get install -y zip
+        - run:
+            name: System information
+            command: |
+              echo "Node $(node -v)"
+              echo "Yarn v$(yarn --version)"
+        - run:
+            name: Install dependencies
+            command: yarn
+        - run:
+            name: Set Version
+            command: yarn set:version
+            environment:
+              NEXT_VERSION: 1.0.4
+        - run:
+            name: Build
+            command: yarn build
+        - save_cache:
+            key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            paths:
+              - ~/workspace/node_modules
+              - ~/.cache/yarn/
+    - deploy:
+        executer: default
+        steps:
+          - run:
+            name: Upload & Publish
+            command: yarn upload
 
-    steps:
-      - checkout
-      - restore_cache:
-          key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install zip
-          command: apt-get update -y && apt-get install -y zip
-      - run:
-          name: System information
-          command: |
-            echo "Node $(node -v)"
-            echo "Yarn v$(yarn --version)"
-      - run:
-          name: Install dependencies
-          command: yarn
-      - run:
-          name: Set Version
-          command: yarn set:version
-          environment:
-            NEXT_VERSION: 1.0.4
-      - run:
-          name: Build
-          command: yarn build
-      - run:
-          name: Upload & Publish
-          command: yarn upload
-      - save_cache:
-          key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/workspace/node_modules
-            - ~/.cache/yarn/
+workflows:
+  publish:
+    jobs:
+      - build:
+      - deploy:
+            requires: build
+            filters:
+              tags:
+                only: /^v.*/
+              branches:
+                ignore: /.*/
