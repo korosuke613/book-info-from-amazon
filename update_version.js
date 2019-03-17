@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const file_path = path.resolve(__dirname, "app", "manifest.json");
-const update = require('./upload');
+const update = require('./version');
 
 
 const main = ()=> {
