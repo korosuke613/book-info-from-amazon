@@ -24,11 +24,6 @@ jobs:
           name: Install dependencies
           command: yarn
       - run:
-          name: Set Version
-          command: yarn set:version
-          environment:
-            NEXT_VERSION: 1.0.4
-      - run:
           name: Build
           command: yarn build
       - save_cache:
@@ -39,6 +34,14 @@ jobs:
   deploy:
     executor: default
     steps:
+      - run:
+          name: Set Version
+          command: yarn set:version
+          environment:
+            NEXT_VERSION: $CIRCLE_TAG
+      - run:
+          name: Pack ZIP
+          command: yarn upload:pack
       - run:
           name: Upload & Publish
           command: yarn upload

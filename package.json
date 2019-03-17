@@ -28,12 +28,11 @@
     }
   },
   "scripts": {
-    "build:compile": "yarn tsc",
-    "build:pack": "zip -r app app -x \"*.ts\"",
-    "build": "yarn build:compile && yarn build:pack",
+    "build": "yarn tsc",
+    "upload:pack": "zip -r app app -x \"*.ts\"",
     "upload": "yarn upload:file && yarn upload:publish",
     "upload:file": "node upload.js",
     "upload:publish": "node publish.js",
-    "set:version": "node update_version.js $NEXT_VERSION"
+    "upload:version": "node update_version.js $NEXT_VERSION"
   }
 }
