@@ -32,8 +32,8 @@
     "build:pack": "zip -r app app -x \"*.ts\"",
     "build": "yarn build:compile && yarn build:pack",
     "upload": "yarn upload:file && yarn upload:publish",
-    "upload:file": "node upload.js",
-    "upload:publish": "node publish.js",
+    "upload:file": "CLIENT_ID=$CLIENT_ID CLIENT_SECRET=$CLIENT_SECRET REFRESH_TOKEN=$REFRESH_TOKEN node upload.js",
+    "upload:publish": "CLIENT_ID=$CLIENT_ID CLIENT_SECRET=$CLIENT_SECRET REFRESH_TOKEN=$REFRESH_TOKEN node publish.js",
     "set:version": "node update_version.js $NEXT_VERSION"
   }
 }
