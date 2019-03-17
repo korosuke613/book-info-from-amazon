@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 module.exports.load_JSON = (file_path) => {
   return JSON.parse(
     fs.readFileSync(
