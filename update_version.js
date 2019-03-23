@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const file_path = path.resolve(__dirname, "app", "manifest.json");
+const file_path = path.resolve(__dirname, 'dist', 'manifest.json');
 const update = require('./version');
 
 
-const main = ()=> {
+const main = () => {
   const version = update.load_version(process.argv[2]);
-  if(version === false) {
+  if (version === false) {
     process.on('exit', () => {
       process.exit(1);
     });
@@ -18,7 +18,7 @@ const main = ()=> {
   fs.writeFileSync(
     file_path,
     JSON.stringify(config, null, '  '),
-    "utf-8"
+    'utf-8'
   );
 };
 

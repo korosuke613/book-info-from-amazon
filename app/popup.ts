@@ -9,12 +9,11 @@ document.querySelector('#go-to-options').addEventListener('click', () => {
 });
 
 chrome.tabs.query({}, () => {
-  const bookInfo = chrome.extension.getBackgroundPage()['bookInfo'];
   const results = document.getElementById('results') as HTMLInputElement;
   chrome.storage.sync.get(
-    { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' },
+    { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' , bookInfo: ''},
     (item) => {
-      console.log(item);
+      const bookInfo = item.bookInfo;
       results['value'] = '';
       if (item.title === 'on') {
         results['value'] += `タイトル: ${bookInfo.title}\n`;
