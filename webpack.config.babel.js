@@ -3,7 +3,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
     entry: {
-        contentScripts: path.join(__dirname, 'app', 'content.js'),
+        contentScripts: path.join(__dirname, 'app', 'content.ts'),
     },
     mode: "development",
     output: {
@@ -22,6 +22,12 @@ export default {
                 test: /\.js$/,
                 use: { loader: 'babel-loader' }
             },
+            {
+                // 拡張子 .ts の場合
+                test: /\.ts$/,
+                // TypeScript をコンパイルする
+                use: 'ts-loader'
+            }
         ]
     },
     plugins: [
