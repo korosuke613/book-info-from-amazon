@@ -8,6 +8,8 @@ export default {
     entry: {
         content: path.join(__dirname, source_dir, 'content.ts'),
         background: path.join(__dirname, source_dir, 'background.ts'),
+        popup: path.join(__dirname, source_dir, 'popup.ts'),
+        options: path.join(__dirname, source_dir, 'options.ts'),
     },
     mode: 'development',
     output: {
@@ -38,13 +40,22 @@ export default {
         new CopyWebpackPlugin(
             [
                 {
-                    from: path.join(__dirname, source_dir, 'manifest.json'),
-                    to: path.join(__dirname, output_dir),
+                    from: 'manifest.json',
+                },
+                {
+                    from: '*.html',
+                },
+                {
+                    from: '*.png',
+                    to: 'images',
+                    context: 'images'
                 }
-            ]
+            ],
+            { context: source_dir }
         )
     ],
     resolve: {
         extensions: ['.ts', '.js', '.json']
-    }
+    },
+    devtool: 'cheap-module-source-map'
 };

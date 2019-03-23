@@ -20,14 +20,14 @@
         "https://www.amazon.co.jp/*"
       ],
       "js": [
-        "content.bandle.js"
+        "scripts/content.bundle.js"
       ],
       "run_at": "document_end"
     }
   ],
   "background": {
     "scripts": [
-      "background.bandle.js"
+      "scripts/background.bundle.js"
     ]
   },
   "permissions": [
