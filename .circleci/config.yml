@@ -1,6 +1,5 @@
 version: 2.1
 executors:
-  # ここに好きな名前で executor を定義できる
   default:
     working_directory: ~/workspace
     docker:
@@ -29,9 +28,9 @@ jobs:
             - ~/workspace/node_modules
             - ~/.cache/yarn/
       - persist_to_workspace:
-          root: . # workspaceのrootパス（絶対パスかworking_directoryからの相対パス）
+          root: .
           paths:
-            - . # 共有するパス（絶対パスかrootからの相対パス）
+            - .
   test:
     executor: default
     steps:
