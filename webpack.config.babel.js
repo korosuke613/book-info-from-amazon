@@ -3,7 +3,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
     entry: {
-        contentScripts: path.join(__dirname, 'app', 'content.ts'),
+        content: path.join(__dirname, 'app', 'content.ts'),
     },
     mode: "development",
     output: {
