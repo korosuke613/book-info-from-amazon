@@ -9,7 +9,7 @@ export default {
         content: path.join(__dirname, source_dir, 'content.ts'),
         background: path.join(__dirname, source_dir, 'background.ts'),
     },
-    mode: "development",
+    mode: 'development',
     output: {
         path: path.join(__dirname, output_dir),
         filename: 'scripts/[name].bundle.js',
