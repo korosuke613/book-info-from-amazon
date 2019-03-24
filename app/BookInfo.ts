@@ -40,9 +40,6 @@ export class BookInfo {
           if (typeof text !== 'string') {
             text = details[index].innerHTML;
           }
-          if (typeof text !== 'string') {
-            continue;
-          }
           text = text.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
           if (text.match(/ISBN-10/)) {
             this.isbn10 = text;
