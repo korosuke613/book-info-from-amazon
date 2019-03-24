@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const file_path = path.resolve(__dirname, 'dist', 'manifest.json');
+const file_path = path.resolve(__dirname, '..', 'dist', 'manifest.json');
 const update = require('./version');
 
 

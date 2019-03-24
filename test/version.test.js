@@ -1,4 +1,4 @@
-const update = require('../version');
+const update = require('../scripts/version');
 const path = require('path');
 
 
