@@ -43,40 +43,14 @@
       ]
     }
   },
-  "nyc": {
-    "all": true,
-    "include": [
-      "*.js",
-      "*.ts",
-      "app/*.ts"
-    ],
-    "exclude": [
-      "coverage/**",
-      "packages/*/test/**",
-      "test/**",
-      "test{,-*}.js",
-      "**/*{.,-}test.js",
-      "**/__tests__/**",
-      "**/node_modules/**",
-      "**/webpack.config.*"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "sourceMap": true
-  },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "webpack -w --config webpack.dev.js",
     "upload:pack": "zip -r app dist",
     "upload": "yarn upload:file && yarn upload:publish",
-    "upload:file": "node upload.js",
-    "upload:publish": "node publish.js",
-    "upload:version": "node update_version.js $CIRCLE_TAG",
-    "test_nyc": "nyc mocha",
+    "upload:file": "node scripts/upload.js",
+    "upload:publish": "node scripts/publish.js",
+    "upload:version": "node scripts/update_version.js $CIRCLE_TAG",
     "test": "NODE_ENV=test jest",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls"
   }
