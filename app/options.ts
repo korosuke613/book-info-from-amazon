@@ -3,38 +3,24 @@
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(
     { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' }, (item) => {
-      let tmp: any = document.getElementById('title');
-      tmp.value = item.title;
-      tmp = document.getElementById('author');
-      tmp.value = item.author;
-      tmp = document.getElementById('URL');
-      tmp.value = item.url;
-      tmp = document.getElementById('price');
-      tmp.value = item.price;
-      tmp = document.getElementById('publisher');
-      tmp.value = item.publisher;
-      tmp = document.getElementById('isbn10');
-      tmp.value = item.isbn10;
-      tmp = document.getElementById('isbn13');
-      tmp.value = item.isbn13;
+      (<HTMLInputElement>document.getElementById('title')).value = item.title;
+      (<HTMLInputElement>document.getElementById('author')).value = item.author;
+      (<HTMLInputElement>document.getElementById('URL')).value = item.url;
+      (<HTMLInputElement>document.getElementById('price')).value = item.price;
+      (<HTMLInputElement>document.getElementById('publisher')).value = item.publisher;
+      (<HTMLInputElement>document.getElementById('isbn10')).value = item.isbn10;
+      (<HTMLInputElement>document.getElementById('isbn13')).value = item.isbn13;
     });
 });
 
 document.getElementById('save').addEventListener('click', () => {
-  let title: any = document.getElementById('title');
-  title = title.value;
-  let author: any = document.getElementById('author');
-  author = author.value;
-  let url: any = document.getElementById('URL');
-  url = url.value;
-  let price: any = document.getElementById('price');
-  price = price.value;
-  let publisher: any = document.getElementById('publisher');
-  publisher = publisher.value;
-  let isbn10: any = document.getElementById('isbn10');
-  isbn10 = isbn10.value;
-  let isbn13: any = document.getElementById('isbn13');
-  isbn13 = isbn13.value;
+  let title = (<HTMLInputElement>document.getElementById('title')).value;
+  let author = (<HTMLInputElement>document.getElementById('author')).value;
+  let url = (<HTMLInputElement>document.getElementById('URL')).value;
+  let price = (<HTMLInputElement>document.getElementById('price')).value;
+  let publisher = (<HTMLInputElement>document.getElementById('publisher')).value;
+  let isbn10 = (<HTMLInputElement>document.getElementById('isbn10')).value;
+  let isbn13 = (<HTMLInputElement>document.getElementById('isbn13')).value;
   chrome.storage.sync.set({ title, author, url, price, publisher, isbn10, isbn13 },
                           () => {
                             console.log('saved');
