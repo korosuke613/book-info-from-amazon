@@ -5,16 +5,19 @@
     "node": ">=0.8.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/polyfill": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "@types/chrome": "0.0.81",
-    "babel-core": "^6.26.3",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
-    "babel-preset-es2015": "^6.24.1",
-    "chai": "^4.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
     "chrome-webstore-upload": "^0.2.2",
     "copy-webpack-plugin": "^5.0.2",
     "coveralls": "^3.0.3",
-    "mocha": "^6.0.2",
-    "nyc": "^13.3.0",
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.0",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
     "tslint": "^5.12.1",
@@ -40,40 +43,15 @@
       ]
     }
   },
-  "nyc": {
-    "all": true,
-    "include": [
-      "*.js",
-      "*.ts",
-      "app/*.ts"
-    ],
-    "exclude": [
-      "coverage/**",
-      "packages/*/test/**",
-      "test/**",
-      "test{,-*}.js",
-      "**/*{.,-}test.js",
-      "**/__tests__/**",
-      "**/node_modules/**",
-      "**/webpack.config.*"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "sourceMap": true
-  },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "webpack -w --config webpack.dev.js",
     "upload:pack": "zip -r app dist",
     "upload": "yarn upload:file && yarn upload:publish",
-    "upload:file": "node upload.js",
-    "upload:publish": "node publish.js",
-    "upload:version": "node update_version.js $CIRCLE_TAG",
-    "test": "nyc mocha",
-    "test:coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "upload:file": "node scripts/upload.js",
+    "upload:publish": "node scripts/publish.js",
+    "upload:version": "node scripts/update_version.js $CIRCLE_TAG",
+    "test": "NODE_ENV=test jest",
+    "test:coveralls": "cat ./coverage/lcov.info | coveralls"
   }
 }

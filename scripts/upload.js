@@ -1,3 +1,5 @@
+const path = require('path');
+
 const webStore = require('chrome-webstore-upload')({
   extensionId: 'bkhaeipigknfhmbkcoingjepncjpaedl',
   clientId: process.env.CLIENT_ID,
@@ -5,18 +7,18 @@ const webStore = require('chrome-webstore-upload')({
   refreshToken: process.env.REFRESH_TOKEN,
 });
 
+const fs = require('fs');
+
 webStore.fetchToken().then(token => {
-  const target = 'default'; // optional. Can also be 'trustedTesters'
-  webStore.publish(target, token).then(res => {
-    if (res.status[0] === 'OK') console.log("publish success");
-    else {
+  const myZipFile = fs.createReadStream(path.resolve(__dirname, '..', 'app.zip'));
+  webStore.uploadExisting(myZipFile, token).then(res => {
+    if (res.uploadState === 'SUCCESS') {
+      console.log('upload success');
+    } else {
       console.log(res);
       process.on('exit', () => {
         process.exit(1);
       });
     }
-  }).catch((err)=>{
-    console.log('Currently being published.');
   });
 });
-
