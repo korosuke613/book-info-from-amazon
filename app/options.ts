@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(
-    { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' }, (item) => {
+    { title: 'on', author: 'on', url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' }, (item) => {
       (<HTMLInputElement>document.getElementById('title')).value = item.title;
       (<HTMLInputElement>document.getElementById('author')).value = item.author;
       (<HTMLInputElement>document.getElementById('URL')).value = item.url;
@@ -14,16 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('save').addEventListener('click', () => {
-  let title = (<HTMLInputElement>document.getElementById('title')).value;
-  let author = (<HTMLInputElement>document.getElementById('author')).value;
-  let url = (<HTMLInputElement>document.getElementById('URL')).value;
-  let price = (<HTMLInputElement>document.getElementById('price')).value;
-  let publisher = (<HTMLInputElement>document.getElementById('publisher')).value;
-  let isbn10 = (<HTMLInputElement>document.getElementById('isbn10')).value;
-  let isbn13 = (<HTMLInputElement>document.getElementById('isbn13')).value;
-  chrome.storage.sync.set({ title, author, url, price, publisher, isbn10, isbn13 },
-                          () => {
-                            console.log('saved');
-                          });
+  const title = (<HTMLInputElement>document.getElementById('title')).value;
+  const author = (<HTMLInputElement>document.getElementById('author')).value;
+  const url = (<HTMLInputElement>document.getElementById('URL')).value;
+  const price = (<HTMLInputElement>document.getElementById('price')).value;
+  const publisher = (<HTMLInputElement>document.getElementById('publisher')).value;
+  const isbn10 = (<HTMLInputElement>document.getElementById('isbn10')).value;
+  const isbn13 = (<HTMLInputElement>document.getElementById('isbn13')).value;
+  chrome.storage.sync.set({ title, author, url, price, publisher, isbn10, isbn13 });
 });
 // # sourceMappingURL=options.js.map

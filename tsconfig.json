@@ -11,5 +11,16 @@
   "types": [
     //(various types, e.g. jquery, core-js),
     "chrome"
-  ]
+  ],
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "prettier": [
+      true,
+      {
+        "semi": false
+      }
+    ]
+  }
 }
