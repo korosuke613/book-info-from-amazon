@@ -6,7 +6,7 @@ export class BookInfo {
     isbn13: string = 'null';
     publisher: string = 'null';
     url: string;
-    price: number;
+    price: string;
     constructor() {
       this.setTitle();
       this.setAuthor();
@@ -17,21 +17,32 @@ export class BookInfo {
   
     setTitle() {
       this.title = document.getElementById('productTitle').innerText;
+      if (this.title === undefined) {
+        this.title = document.getElementById('productTitle').innerHTML;
+      }
     }
   
     setAuthor() {
       const tmpAuthor: any = document.getElementById('bylineInfo').getElementsByClassName('a-link-normal')[0];
-      this.author = tmpAuthor.innerText.replace('のAmazon著者ページを見る', '');
+      try {
+        this.author = tmpAuthor.innerText.replace('のAmazon著者ページを見る', '');
+      } catch (err) {
+        this.author = tmpAuthor.innerHTML.replace('のAmazon著者ページを見る', '');
+      }
     }
   
     setDetails() {
       const details = document.getElementById('detail_bullets_id').getElementsByTagName('li');
   
       for (const index in details) {
-        const text = details[index].innerText;
+        let text = details[index].innerText;
+        if (typeof text !== 'string') {
+          text = details[index].innerHTML;
+        }
         if (typeof text !== 'string') {
           continue;
         }
+        text = text.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'')
         if (text.match(/ISBN-10/)) {
           this.isbn10 = text;
         }else if (text.match(/ISBN-13/)) {
@@ -49,5 +60,8 @@ export class BookInfo {
     setPrice() {
       const tmpPrice: any = document.getElementById('buyNewSection').getElementsByClassName('offer-price')[0];
       this.price = tmpPrice.innerText;
+      if (typeof this.price !== 'string') {
+        this.price = tmpPrice.innerHTML;
+      }
     }
   }

@@ -5,6 +5,5 @@ module.exports = {
     },
     moduleFileExtensions: ['js', 'ts'], // テスト対象の拡張子を列挙する
     verbose: true,
-    collectCoverage: true,
     collectCoverageFrom: ['**/*.{js,jsx}', 'app/**', '!**/node_modules/**', '!**/dist/**', '!webpack.*', '!**/coverage/**', '!*.config.*']
 };
