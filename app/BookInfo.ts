@@ -35,20 +35,22 @@ export class BookInfo {
       const details = document.getElementById('detail_bullets_id').getElementsByTagName('li');
   
       for (const index in details) {
-        let text = details[index].innerText;
-        if (typeof text !== 'string') {
-          text = details[index].innerHTML;
-        }
-        if (typeof text !== 'string') {
-          continue;
-        }
-        text = text.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'')
-        if (text.match(/ISBN-10/)) {
-          this.isbn10 = text;
-        }else if (text.match(/ISBN-13/)) {
-          this.isbn13 = text;
-        }else if (text.match(/出版社/)) {
-          this.publisher = text;
+        if (details.hasOwnProperty(index)) {
+          let text = details[index].innerText;
+          if (typeof text !== 'string') {
+            text = details[index].innerHTML;
+          }
+          if (typeof text !== 'string') {
+            continue;
+          }
+          text = text.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
+          if (text.match(/ISBN-10/)) {
+            this.isbn10 = text;
+          } else if (text.match(/ISBN-13/)) {
+            this.isbn13 = text;
+          } else if (text.match(/出版社/)) {
+            this.publisher = text;
+          }
         }
       }
     }
