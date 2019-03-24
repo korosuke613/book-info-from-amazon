@@ -2,7 +2,7 @@ const { BookInfo } = require('../app/BookInfo');
 const path = require('path');
 const fs = require('fs');
 
-const file_path = path.resolve(__dirname, 'BookInfo.test.html');
+const file_path = path.resolve(__dirname, 'BookInfo.test.html.txt');
 document.body.innerHTML = fs.readFileSync(file_path);
 
 let bookInfo = new BookInfo();
