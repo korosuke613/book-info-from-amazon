@@ -11,8 +11,17 @@ document.querySelector('#go-to-options').addEventListener('click', () => {
 chrome.tabs.query({}, () => {
   const results = document.getElementById('results') as HTMLInputElement;
   chrome.storage.sync.get(
-    { title: 'on', author: 'on' , url: 'on', price: 'on', publisher: 'on', isbn10: 'on', isbn13: 'on' , bookInfo: ''},
-    (item) => {
+    {
+      title: 'on',
+      author: 'on',
+      url: 'on',
+      price: 'on',
+      publisher: 'on',
+      isbn10: 'on',
+      isbn13: 'on',
+      bookInfo: '',
+    },
+    item => {
       const bookInfo = item.bookInfo;
       results['value'] = '';
       if (item.title === 'on') {
@@ -37,7 +46,6 @@ chrome.tabs.query({}, () => {
         results['value'] += `URL: ${bookInfo.url}`;
       }
       results.select();
-
-    });
-
+    },
+  );
 });
