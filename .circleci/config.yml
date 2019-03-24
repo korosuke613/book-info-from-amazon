@@ -38,7 +38,7 @@ jobs:
           at: .
       - run:
           name: Test
-          command: yarn test
+          command: yarn test:withCoverage
       - run:
           name: Post Coveralls
           command: yarn test:coveralls

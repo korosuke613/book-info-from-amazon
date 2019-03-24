@@ -53,6 +53,7 @@
     "upload:publish": "node scripts/publish.js",
     "upload:version": "node scripts/update_version.js $CIRCLE_TAG",
     "test": "NODE_ENV=test jest",
+    "test:withCoverage": "NODE_ENV=test jest --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls"
   }
 }
