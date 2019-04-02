@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
-    "@babel/polyfill": "^7.4.0",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.2",
     "@types/chrome": "0.0.81",
     "@types/jest": "^24.0.11",
