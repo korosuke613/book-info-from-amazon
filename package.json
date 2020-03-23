@@ -28,7 +28,7 @@
     "babel-preset-env": "^1.7.0",
     "chrome-webstore-upload": "^0.2.2",
     "copy-webpack-plugin": "^5.1.1",
-    "coveralls": "^3.0.9",
+    "coveralls": "^3.0.11",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "lint-staged": "^10.0.8",
