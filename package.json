@@ -42,7 +42,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2",
     "set-value": "3.0.1",
-    "serialize-javascript": "3.1.0"
+    "serialize-javascript": "5.0.1"
   },
   "eslintConfig": {
     "env": {
